@@ -1,7 +1,8 @@
 from trie import Trie
-from levenstein import LevenhsteinAutomaton
+from damerau import DamerauAutomaton
 
 def extract(Automaton, state, node):
+    #recursion
     if not Automaton.can_match(state):
         return []
     ans = []
@@ -14,7 +15,7 @@ def extract(Automaton, state, node):
     return ans
 
 def extract_words(node, string, n):
-    Automaton = LevenshteinAutomaton(string, n)
+    Automaton = DamerauAutomaton(string, n)
     state = Automaton.start()
     return extract(Automaton, state, node)
 
@@ -32,5 +33,5 @@ while 1:
     if word == '$$$':
         print('finaly')
         exit()
-    print(extract_words(T, word, 2))
+    print(extract_words(T, word, 1))
 
